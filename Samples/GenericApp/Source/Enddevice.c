@@ -1,6 +1,6 @@
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 * 文件名  ：Enbddevice
-* 作者    ：linzhiping
+* 作者    ：wangsihui
 * 版本    ：V0.0.1
 * 时间    ：2021/5/17
 * 描述    ：文件说明
@@ -63,7 +63,7 @@ devStates_t GenericApp_NwkState;
 * 函数名  ：GenericApp_Init
 * 参数    ：byte task_id
 * 返回    ：void
-* 作者    ：linzhiping
+* 作者    ：wangsihui
 * 时间    ：2021/5/17
 * 描述    ：函数说明
 ----------------------------------------------------------------*/
@@ -85,7 +85,7 @@ void GenericApp_Init( byte task_id )
 * 函数名  ：GenericApp_ProcessEvent
 * 参数    ：byte task_id,UNIT16 evens
 * 返回    ：UINT16
-* 作者    ：linzhiping
+* 作者    ：wangsihui
 * 时间    ：2021/5/17
 * 描述    ：函数说明
 ----------------------------------------------------------------*/
@@ -124,7 +124,7 @@ UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
 * 函数名  ：GenericApp_SendTheMessage
 * 参数    ：void
 * 返回    ：void
-* 作者    ：linzhiping
+* 作者    ：wangsihui
 * 时间    ：2021/5/17
 * 描述    ：函数说明
 ----------------------------------------------------------------*/

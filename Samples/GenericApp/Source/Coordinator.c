@@ -1,3 +1,14 @@
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+* 文件名  ： Coordinator
+* 作者    ： wangsihui
+* 版本    ： V1.0.0
+* 时间    ： 2021/5/17
+* 简要    ： 协调器  
+********************************************************************
+* 副本
+*
+*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* 头文件 ----------------------------------------------------------------*/
 #include  "OSAL.h"
 #include  "AF.h"
 #include  "ZDAPP.h"
@@ -16,9 +27,11 @@
 #include "hal_uart.h"
 
 const cId_t GenericApp_ClusterList[GENERICAPP_MAX_CLUSTERS] =
+//GENERICAPP_MAX_CLUSTERS在Coordinator.h文件中定义的宏
 {
     GENERICAPP_CLUSTERID
 };
+//以下数据结构可以用来描述一个ZigBee设备节点
 const SimpleDescriptionFormat_t GenericApp_SimpleDesc =
 {
     GENERICAPP_ENDPOINT,
@@ -32,34 +45,34 @@ const SimpleDescriptionFormat_t GenericApp_SimpleDesc =
     (cId_t *)NULL
 };
 
-endPointDesc_t GenericApp_epDesc;
-byte GenericApp_TaskID;
-byte GenericApp_TransID;
+endPointDesc_t GenericApp_epDesc; //节点描述符
+byte GenericApp_TaskID; //任务优先级
+byte GenericApp_TransID;//数据发送序列号
 
 
-void GenericApp_MessageMSGCB(afIncomingMSGPacket_t *pckt );
-void GenericApp_SendTheMessage(void);
+void GenericApp_MessageMSGCB(afIncomingMSGPacket_t *pckt );//消息处理函数
+void GenericApp_SendTheMessage(void);//数据发送函数
 
 
 void GenericApp_Init(byte task_id)
 {
     
-    GenericApp_TaskID              =task_id;
-    GenericApp_TransID             = 0;
+    GenericApp_TaskID              =task_id;//初始化任务优先级
+    GenericApp_TransID             = 0;//将数据包的序号初始化为0,
     GenericApp_epDesc.endPoint     =GENERICAPP_ENDPOINT;
     GenericApp_epDesc.task_id      =&GenericApp_TaskID;
     GenericApp_epDesc.simpleDesc   =(SimpleDescriptionFormat_t *)&GenericApp_SimpleDesc;
-    GenericApp_epDesc.latencyReq   =noLatencyReqs;
-    afRegister( &GenericApp_epDesc);
+    GenericApp_epDesc.latencyReq   =noLatencyReqs;//对节点描述符进行初始化
+    afRegister( &GenericApp_epDesc);//使用afRegister函数将节点描述符进行注册
     
 }
-
+//消息处理函数，完成对接收数据的处理
 UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
 {
-    afIncomingMSGPacket_t *MSGpkt;
+    afIncomingMSGPacket_t *MSGpkt;//定义一个指向接收消息结构体的指针MSGpkt
     if ( events & SYS_EVENT_MSG )
     {
-        MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive(GenericApp_TaskID);
+        MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive(GenericApp_TaskID);//使用osal_msg_receive函数从消息队列上接收消息
         while ( MSGpkt )
         {
             switch ( MSGpkt->hdr.event )
@@ -78,6 +91,8 @@ UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
     }
     return 0 ;
 }
+
+//实现数据发送
 void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pkt)
 {
     unsigned char buffer[4]=" ";

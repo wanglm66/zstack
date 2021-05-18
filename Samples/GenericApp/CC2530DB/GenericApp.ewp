@@ -2587,6 +2587,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL</state>
           <state>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04</state>
           <state>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP</state>
+          <state>C:\My Books\zstack</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -6491,7 +6492,7 @@
             <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\target\CC2530EB\hal_aes.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\target\CC2530EB\hal_dma.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_dma.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\target\CC2530EB\hal_mcu.h</name>
@@ -6671,7 +6672,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_TASK.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\MT_TASK.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_TASK.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_UART.c</name>

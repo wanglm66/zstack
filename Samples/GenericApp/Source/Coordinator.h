@@ -1,6 +1,6 @@
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 * 文件名  ： Coordinator
-* 作者    ： wangsihui
+* 作者    ： maluyao
 * 版本    ： V1.0.0
 * 时间    ： 2021/5/17
 * 简要    ： Coordinator的头文件  
@@ -38,6 +38,3 @@ extern void GenericApp_Init(byte task_id);
 extern UINT16 GenericApp_ProcessEvent(byte task_id,UINT16 events);
 
 #endif
-
-
-

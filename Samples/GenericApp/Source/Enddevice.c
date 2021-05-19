@@ -1,6 +1,6 @@
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 * 文件名  ：Enbddevice
-* 作者    ：wangsihui
+* 作者    ：maluyao
 * 版本    ：V0.0.1
 * 时间    ：2021/5/17
 * 描述    ：文件说明
@@ -35,10 +35,12 @@ void  GenericApp_SendTheMessage(void);
 /* 函数 ----------------------------------------------------------------*/
 
 const cId_t GenericApp_ClusterList[GENERICAPP_MAX_CLUSTERS ] = 
+//GENERICAPP_MAX_CLUSTERS在Coordinator.h文件中定义的宏
 {
     GENERICAPP_CLUSTERID
 };
 
+//以下数据结构可以用来描述一个ZigBee设备节点
 const SimpleDescriptionFormat_t GenericApp_SimpleDesc = 
 {
     GENERICAPP_ENDPOINT,
@@ -63,14 +65,15 @@ devStates_t GenericApp_NwkState;
 * 函数名  ：GenericApp_Init
 * 参数    ：byte task_id
 * 返回    ：void
-* 作者    ：wangsihui
+* 作者    ：maluyao
 * 时间    ：2021/5/17
 * 描述    ：函数说明
 ----------------------------------------------------------------*/
+//以下为任务初始化函数
 void GenericApp_Init( byte task_id )
 {
     GenericApp_TaskID   =   task_id;
-    GenericApp_NwkState   =   DEV_INIT;
+    GenericApp_NwkState   =   DEV_INIT;//将设备状态初始化为DEV_INIT,表示该节点没有连接到ZigBee网络
     GenericApp_TransID    =   0;
     GenericApp_epDesc.endPoint    =   GENERICAPP_ENDPOINT;
     GenericApp_epDesc.task_id   =   &GenericApp_TaskID;
@@ -85,10 +88,11 @@ void GenericApp_Init( byte task_id )
 * 函数名  ：GenericApp_ProcessEvent
 * 参数    ：byte task_id,UNIT16 evens
 * 返回    ：UINT16
-* 作者    ：wangsihui
+* 作者    ：maluyao
 * 时间    ：2021/5/17
 * 描述    ：函数说明
 ----------------------------------------------------------------*/
+//消息处理函数，完成对接收数据的处理
 UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
 {
     afIncomingMSGPacket_t *MSGpkt;
@@ -124,10 +128,11 @@ UINT16 GenericApp_ProcessEvent( byte task_id, UINT16 events )
 * 函数名  ：GenericApp_SendTheMessage
 * 参数    ：void
 * 返回    ：void
-* 作者    ：wangsihui
+* 作者    ：maluyao
 * 时间    ：2021/5/17
 * 描述    ：函数说明
 ----------------------------------------------------------------*/
+//实现数据发送
 void  GenericApp_SendTheMessage(void)
 {
     unsigned char theMessageData[4] = "LED";
@@ -145,7 +150,3 @@ void  GenericApp_SendTheMessage(void)
     HalLedBlink (HAL_LED_2,0,50,500);
     
 }
-
-
-
-
